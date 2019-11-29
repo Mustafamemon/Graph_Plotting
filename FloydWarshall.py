@@ -1,14 +1,17 @@
 import parser_1
+import copy 
 
 undefined = float('inf')
 def floydWarshall(graph,path,V,src,node): 
-    dist = graph
+    print(graph)
+    dist = copy.deepcopy(graph)
     for k in range(V): 
         for i in range(V): 
             for j in range(V):
                 if(dist[i][j] > dist[i][k]+ dist[k][j]):
                     dist[i][j] = dist[i][k]+ dist[k][j]
                     path[i][j] = path[k][j]
+    
     total_cost = 0
     node[src]=-1
     from_to_cost = [] 
@@ -19,7 +22,7 @@ def floydWarshall(graph,path,V,src,node):
         temp = [None]*3
         temp[1]= dest 
         temp[0]=path[src][k]
-        temp[2]=round(dist[src][k],4)
+        temp[2]=round(graph[temp[0]][temp[1]],4)
         total_cost += dist[src][k]
         from_to_cost.append(temp)
         if (path[src][k]== src or node[path[src][k]]==-1):
