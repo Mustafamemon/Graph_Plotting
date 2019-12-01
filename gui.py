@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-import prims ,kurskal ,dijkstra,FloydWarshall,bellmanford,parser_1,plotting
+import prims ,kruskal ,dijkstra,FloydWarshall,bellmanford,parser_1,plotting
 from functools import partial
 result = 0
 node_x_y = 0
@@ -63,7 +63,7 @@ button1 = tk.Button(root, text='Submit' ,width=25, command=readFileName)
 button1.grid(row=1)
 button2 = tk.Button(root, text='PLOT' ,width=25, command=PLOTTING)
 button3 = tk.Button(root, text='PRIMS' ,width=25, command=lambda: buttonpress( prims.PRIMS,from_to_cost,no_of_nodes,source ))
-button4 = tk.Button(root, text='KURSKAL', width=25, command=lambda: buttonpress(kurskal.KURSKAL,from_to_cost,no_of_nodes))
+button4 = tk.Button(root, text='kruskal', width=25, command=lambda: buttonpress(kruskal.kruskal,from_to_cost,no_of_nodes))
 button5 = tk.Button(root, text='DIJKSTRA', width=25, command=lambda: buttonpress(dijkstra.DIJKSTRA,from_to_cost,no_of_nodes,source))
 button6 = tk.Button(root, text='FLOYD WARSHALL', width=25, command=lambda: buttonpress(FloydWarshall.FLOYDWARSHALL,from_to_cost,no_of_nodes,source,node_x_y))
 button7 = tk.Button(root, text='BELLMAN FORD', width=25, command=lambda: buttonpress(bellmanford.BELLMANFORD,from_to_cost,no_of_nodes,source))
