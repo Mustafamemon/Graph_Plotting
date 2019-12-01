@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets, uic, Qt
-from PyQt5.QtWidgets import (QWidget, QPushButton, QLineEdit, 
+from PyQt5.QtWidgets import (QWidget, QPushButton, QLineEdit,
     QInputDialog, QApplication, QFileDialog) 	
 from PyQt5.QtGui import QPalette
 
@@ -51,7 +51,19 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         global no_of_nodes 
         global source 
 
-        result = parser_1.PARSER(file_path)
+        try:
+            result = parser_1.PARSER(file_path)
+        except FileNotFoundError as fe:
+            print(fe)
+            er = QtWidgets.QErrorMessage(self)
+            er.showMessage('Invalid File')
+            return 
+        except ValueError as fe:
+            print(fe)
+            er = QtWidgets.QErrorMessage(self)
+            er.showMessage('Invalid File')
+            return 
+
         result = result + (0.0,) + ('Simple Graph',)
         node_x_y = result[0]
         from_to_cost = result [1]
@@ -90,7 +102,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_dijkstra.clicked.connect(lambda :buttonpress(dijkstra.DIJKSTRA,from_to_cost,no_of_nodes,source))
         self.pushButton_bellman.clicked.connect(lambda: buttonpress(bellmanford.BELLMANFORD,from_to_cost,no_of_nodes,source))
         self.pushButton_floyd.clicked.connect(lambda: buttonpress(FloydWarshall.FLOYDWARSHALL,from_to_cost,no_of_nodes,source,node_x_y))
-        self.pushButton_local.clicked.connect(lambda: LocalCluster.LocalCluster(result))
+        self.pushButton_local.clicked.connect(lambda: LocalCluster.LocalCluster(result, self))
         self.pushButton_all.clicked.connect(lambda: all_bulk.get_all_results(from_to_cost,no_of_nodes,source,node_x_y, result, self))
         self.pushButton_get_input.clicked.connect(self.benchmark_input)
 

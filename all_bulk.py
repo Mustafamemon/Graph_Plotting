@@ -20,15 +20,15 @@ def get_all_results(from_to_cost,no_of_nodes,source,node_x_y, result, ui):
     bellman_cost = bellman_output[1]
     floyd_cost = floyd_output[1]
     local_cluster_average = LocalCluster.LOCALCLUSTERAVERAGE(result)
-    print(kruskal_cost)
-    print(prims_cost)
-    print(dijkstra_cost)
-    print(bellman_cost)
-    print(floyd_cost)
-    print(local_cluster_average)
+    # print(kruskal_cost)
+    # print(prims_cost)
+    # print(dijkstra_cost)
+    # print(bellman_cost)
+    # print(floyd_cost)
+    # print(local_cluster_average)
 
     data =[kruskal_cost, prims_cost, dijkstra_cost, bellman_cost, floyd_cost, local_cluster_average]
     for y in range(0, len(data)):
-        print('col test : ' + str(ui.tableWidget.item(0,y).text()))
+        # print('col test : ' + str(ui.tableWidget.item(0,y).text()))
         ui.tableWidget.item(0,y).setText(str(data[y]))
     
