@@ -102,6 +102,8 @@ def LocalCluster(input_data, ui):
         qtable.setItem(x, 1, QTableWidgetItem(str(c_n[x])))
         qtable.item(x,0).setBackground(QtGui.QColor(plt.cm.Reds(table_colors)[x][0][0]* 255,plt.cm.Reds(table_colors)[x][0][1] * 255,plt.cm.Reds(table_colors)[x][0][2]* 255))
         qtable.item(x,1).setBackground(QtGui.QColor(plt.cm.Reds(table_colors)[x][0][0]* 255,plt.cm.Reds(table_colors)[x][0][1] * 255,plt.cm.Reds(table_colors)[x][0][2]* 255))
+        qtable.item(x,1).setForeground(QtGui.QColor(0,0,0))
+        qtable.item(x,0).setForeground(QtGui.QColor(0,0,0))
     qtable.show()
 
     # row_height = 0.03 
